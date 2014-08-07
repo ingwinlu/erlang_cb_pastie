@@ -1,0 +1,50 @@
+body { padding-top: 70px; }
+
+form {
+    margin: 0px;
+}
+
+pre {
+    background: #f8f8f8;
+    counter-reset: line-numbering;
+    /*min-width: 720px; could be used to not fold text*/
+}
+
+pre .line::before {
+    content: counter(line-numbering);
+    counter-increment: line-numbering;
+    padding-right: 1em;
+    /* space after numbers */
+    width: 3em;
+    text-align: right;
+    opacity: 0.5;
+    display: inline-block;
+}
+
+.line{
+    /* margin */
+    margin-bottom: 0px;    
+}
+
+.counter{
+    text-align: right;
+    padding-right: 10px;
+}
+
+#linenumbers{
+    width: 31px;
+}
+
+#codelines{
+    width: 300px;
+}
+
+.line:hover{
+    background: #e7efef;
+}
+
+.code-overflow{
+    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}

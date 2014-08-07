@@ -1,0 +1,121 @@
+{% extends "shared/base.html" %}
+{% block title %}heroicpastie - create{% endblock %}
+
+{% block navbarlinks %}
+<li><a href='./'>Index</a></li>
+<li><a href='./recent'>Recent</a></li>
+<li class="active"><a href='./create'>Create</a></li>
+{% endblock %}
+
+{% block body %}
+<div class="col-md-12">
+    <h1>Create Pastie</h1>
+    {% if errors %}
+        {% include "shared/errors.html" %}
+    {% endif %}
+    <div class="well">
+        <form method="post" class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="pastie_name" class="col-md-2 control-label">Name:</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" id="pastie_name" name="pastie_name" rows="1" {% if new_pastie %}value="{{ new_pastie.paste_name }}"{% else %}placeholder="None"{% endif %}></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="language_text" class="col-md-2 control-label">Language:</label>
+                    <div class="col-md-10">
+                        <select id="language_text" name="language_text" class="form-control">
+                            <option>1C</option>
+                            <option>ActionScript</option>
+                            <option>AppleScript</option>
+                            <option>AVRAssembler</option>
+                            <option>AsciiDoc</option>
+                            <option>AutoHotkey</option>
+                            <option>Axapta</option>
+                            <option>Apache</option>
+                            <option>Bash</option>
+                            <option>Brainfuck</option>
+                            <option>C#</option>
+                            <option>C++</option>
+                            <option>CMake</option>
+                            <option>Clojure</option>
+                            <option>Css</option>
+                            <option>CoffeeScript</option>
+                            <option>D</option>
+                            <option>Delphi</option>
+                            <option>Diff</option>
+                            <option>Django</option>
+                            <option>DOS</option>
+                            <option>Erlang</option>
+                            <option>Erlang REPL</option>
+                            <option>F#</option>
+                            <option>FIX</option>
+                            <option>GLSL</option>
+                            <option>Go</option>
+                            <option>Haml</option>
+                            <option>Handlebars</option>
+                            <option>Haskell</option>
+                            <option>HTML</option>
+                            <option>HTTP</option>
+                            <option>Ini</option>
+                            <option>JSON</option>
+                            <option>Java</option>
+                            <option>JavaScript</option>
+                            <option>Lasso</option>
+                            <option>Lisp</option>
+                            <option>LiveCode</option>
+                            <option>Lua</option>
+                            <option>Makefile</option>
+                            <option>Markdown</option>
+                            <option>Mathematica</option>
+                            <option>Matlab</option>
+                            <option>MEL</option>
+                            <option>Mizar</option>
+                            <option>Nginx</option>
+                            <option>ObjectiveC</option>
+                            <option>OCaml</option>
+                            <option>OracleRulesLanguage</option>
+                            <option>Oxygene</option>
+                            <option>Parser3</option>
+                            <option>PHP</option>
+                            <option>Perl</option>
+                            <option>Python</option>
+                            <option>Python profile</option>
+                            <option>R</option>
+                            <option>RenderManRIB</option>
+                            <option>RenderManRSL</option>
+                            <option>Ruby</option>
+                            <option>Rust</option>
+                            <option>SCSS</option>
+                            <option>Scala</option>
+                            <option>Scilab</option>
+                            <option>Smalltalk</option>
+                            <option>SQL</option>
+                            <option>TeX</option>
+                            <option selected>Text</option>
+                            <option>Vala</option>
+                            <option>VB.NET</option>
+                            <option>VBScript</option>
+                            <option>VHDL</option>
+                            <option>XML</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pastie_text" class="col-md-2 control-label">Enter your pastie here:</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" id="pastie_text" name="pastie_text" rows="15">{% if new_pastie %}{{ new_pastie.paste_string }}{% endif %}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

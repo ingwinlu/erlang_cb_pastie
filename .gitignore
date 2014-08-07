@@ -1,0 +1,14 @@
+#cb stuff
+deps/*
+ebin/*
+log/*
+rebar*
+start-server.bat
+
+#github
+.eunit
+*.o
+*.beam
+*.plt
+erl_crash.dump
+

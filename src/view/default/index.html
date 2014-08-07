@@ -1,0 +1,19 @@
+{% extends "shared/base.html" %}
+{% block title %}heroicpastie - index{% endblock %}
+
+{% block navbarlinks %}
+<li class="active"><a href='./'>Index</a></li>
+<li><a href='./recent'>Recent</a></li>
+<li><a href='./create'>Create</a></li>
+{% endblock %}
+
+{% block body %}
+{% if errors %}
+    {% include "shared/errors.html" %}
+{% endif %}
+<div class="col-md-12">
+    <h1>Welcome to heroicpastie <small>The Pasting Site for real Heroes</small></h1>
+    <p>Total number of stored pasties: <b>{{counter}}</b>.</p>
+</div>
+
+{% endblock %}

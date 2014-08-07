@@ -1,0 +1,27 @@
+{% extends "shared/base.html" %}
+{% block title %}heroicpastie - recent{% endblock %}
+
+{% block navbarlinks %}
+<li><a href='./'>Index</a></li>
+<li class="active"><a href='./recent'>Recent</a></li>
+<li><a href='./create'>Create</a></li>
+{% endblock %}
+
+{% block body %}
+<div class="col-md-12">
+    <h1>Recent Pasties</h1>
+    {% if pasties %}
+    <div class="list-group">
+        {% for pastie in pasties %}
+            <a class="list-group-item" href='/{{pastie.get_pure_id}}'>
+                <span class="identifier">id: {{pastie.id}}</span>,
+                <span class="name">name: {{pastie.paste_name}}</span>,
+                <span class="timestamp">posted: {{pastie.iso_8601_fmt}}</span>
+            </a>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No pasties! <a href='/create'>Create one!</a></p>
+    {% endif %}
+</div>
+{% endblock %}

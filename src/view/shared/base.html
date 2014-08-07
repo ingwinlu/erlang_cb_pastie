@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>{% block title %}heroicpastie - base{% endblock %}</title>
+        <!-- css -->
+        <link href="/static/bs/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/bs/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+        <link href="/static/highlightjs/github.css" rel="stylesheet" type="text/css" />
+        <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        {% include "shared/navbar.html" %}
+        <div class="container">
+            <div class="row">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+        {% include "shared/footer.html" %}
+        <!-- js -->
+        <script type="text/javascript" src="/static/bs/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/bs/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/highlightjs/highlight.pack.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+              $('code').each(function(i, e) {hljs.highlightBlock(e)});
+            });
+        </script>
+    </body>
+</html>
+
