@@ -2,9 +2,9 @@
 {% block title %}heroicpastie - create{% endblock %}
 
 {% block navbarlinks %}
-<li><a href='./'>Index</a></li>
-<li><a href='./recent'>Recent</a></li>
-<li class="active"><a href='./create'>Create</a></li>
+<li><a href='/'>Index</a></li>
+<li><a href='/recent'>Recent</a></li>
+<li class="active"><a href='/create'>Create</a></li>
 {% endblock %}
 
 {% block body %}
@@ -14,7 +14,7 @@
         {% include "shared/errors.html" %}
     {% endif %}
     <div class="well">
-        <form method="post" class="form-horizontal">
+        <form method="post" class="form-horizontal" action="/create">
             <fieldset>
                 <div class="form-group">
                     <label for="pastie_name" class="col-md-2 control-label">Name:</label>
@@ -26,6 +26,9 @@
                     <label for="language_text" class="col-md-2 control-label">Language:</label>
                     <div class="col-md-10">
                         <select id="language_text" name="language_text" class="form-control">
+                        {% if new_pastie %}
+                            <option>{{ new_pastie.language }}</option>
+                        {% else %}
                             <option>1C</option>
                             <option>ActionScript</option>
                             <option>AppleScript</option>
@@ -99,6 +102,7 @@
                             <option>VBScript</option>
                             <option>VHDL</option>
                             <option>XML</option>
+                        {% endif %}
                         </select>
                     </div>
                 </div>
@@ -117,5 +121,4 @@
         </form>
     </div>
 </div>
-
 {% endblock %}

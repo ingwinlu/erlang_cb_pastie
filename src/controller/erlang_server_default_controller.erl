@@ -1,5 +1,6 @@
 -module(erlang_server_default_controller, [Req]).
 -compile(export_all).
+-default_action(index).
 
 index('GET', []) ->
     Counter = boss_db:count(pastie),
@@ -11,7 +12,7 @@ recent('GET', []) ->
 
 create('GET', []) ->
     ok;
-create('POST', []) ->
+create('POST', []) -> %% new pastie
     PastieNameParam = Req:post_param("pastie_name"),
     case PastieNameParam of
         [] -> PastieName = "None";
@@ -25,6 +26,15 @@ create('POST', []) ->
             {redirect, "/" ++ SavedPastie:get_pure_id()};
         {error, ErrorList} ->
             {ok, [{errors, ErrorList}, {new_pastie, NewPastie}]}
+    end;
+create('GET', [PastieId]) -> %% repost a existing pastie
+    case boss_db:find("pastie-" ++ PastieId) of
+        Pastie ->
+            {ok, [{new_pastie, Pastie}]};
+        undefined ->
+            {redirect, "/create"};
+        {error, Reason} ->
+            {redirect, "/create"}
     end.
 
 view('GET', [PastieId]) ->

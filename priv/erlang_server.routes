@@ -19,6 +19,7 @@
 % Other Pages
 {"/recent", [{controller, "default"}, {action, "recent"}]}.
 {"/create", [{controller, "default"}, {action, "create"}]}.
+{"/create/([0-9]+)", [{controller, "default"}, {action, "create"}, {pastie_id, '$1'}]}.
 
 % View Pastie
 {"/([0-9]+)", [{controller, "default"}, {action, "view"}, {pastie_id, '$1'}]}.
