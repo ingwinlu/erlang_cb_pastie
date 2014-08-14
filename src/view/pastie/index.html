@@ -2,9 +2,8 @@
 {% block title %}heroicpastie - index{% endblock %}
 
 {% block navbarlinks %}
-<li class="active"><a href='/'>Index</a></li>
-<li><a href='/recent'>Recent</a></li>
-<li><a href='/create'>Create</a></li>
+<li><a href='/pastie/recent'>Recent</a></li>
+<li><a href='/pastie/create'>Create</a></li>
 {% endblock %}
 
 {% block body %}
@@ -13,7 +12,10 @@
 {% endif %}
 <div class="col-md-12">
     <h1>Welcome to heroicpastie <small>The Pasting Site for real Heroes</small></h1>
+    <h2>Stats:</h2>
     <p>Total number of stored pasties: <b>{{counter}}</b>.</p>
+    <h2>About:</h2>
+    <h3></h3>
+    <p>Source Code available at <a href="https://github.com/ingwinlu/erlang_cb_pastie/">https://github.com/ingwinlu/erlang_cb_pastie/</a></p>
 </div>
-
 {% endblock %}

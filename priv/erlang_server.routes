@@ -14,18 +14,18 @@
 % Note that routing across applications results in a 302 redirect.
 
 % Front page
-{"/", [{controller, "default"}, {action, "index"}]}.
+{"/", [{controller, "pastie"}, {action, "index"}]}.
 
 % Other Pages
-{"/recent", [{controller, "default"}, {action, "recent"}]}.
-{"/create", [{controller, "default"}, {action, "create"}]}.
-{"/create/([0-9]+)", [{controller, "default"}, {action, "create"}, {pastie_id, '$1'}]}.
+%{"/recent", [{controller, "default"}, {action, "recent"}]}.
+%{"/create", [{controller, "default"}, {action, "create"}]}.
+%{"/create/([0-9]+)", [{controller, "default"}, {action, "create"}, {pastie_id, '$1'}]}.
 
 % View Pastie
-{"/([0-9]+)", [{controller, "default"}, {action, "view"}, {pastie_id, '$1'}]}.
-{"/([0-9]+)/raw", [{controller, "default"}, {action, "view_raw"}, {pastie_id, '$1'}]}.
-{"/([0-9]+)/download", [{controller, "default"}, {action, "download"}, {pastie_id, '$1'}]}.
-{"/([0-9]+)/delete", [{controller, "default"}, {action, "delete"}, {pastie_id, '$1'}]}.
+%{"/([0-9]+)", [{controller, "default"}, {action, "view"}, {pastie_id, '$1'}]}.
+%{"/([0-9]+)/raw", [{controller, "default"}, {action, "view_raw"}, {pastie_id, '$1'}]}.
+%{"/([0-9]+)/download", [{controller, "default"}, {action, "download"}, {pastie_id, '$1'}]}.
+%{"/([0-9]+)/delete", [{controller, "default"}, {action, "delete"}, {pastie_id, '$1'}]}.
 
 % 404 File Not Found handler
 {404, [{controller, "error"}, {action, "lost"}]}.

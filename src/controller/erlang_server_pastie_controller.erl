@@ -1,4 +1,4 @@
--module(erlang_server_default_controller, [Req]).
+-module(erlang_server_pastie_controller, [Req]).
 -compile(export_all).
 -default_action(index).
 
@@ -23,7 +23,7 @@ create('POST', []) -> %% new pastie
     NewPastie = pastie:new(id, PastieText, LanguageText, erlang:now(), PastieName),
     case NewPastie:save() of
         {ok, SavedPastie} ->
-            {redirect, "/" ++ SavedPastie:get_pure_id()};
+            {redirect, "/pastie/view/" ++ SavedPastie:get_pure_id()};
         {error, ErrorList} ->
             {ok, [{errors, ErrorList}, {new_pastie, NewPastie}]}
     end;
@@ -45,7 +45,7 @@ view('GET', [PastieId]) ->
             {output, Reason}
     end.
 
-view_raw('GET', [PastieId]) ->
+raw('GET', [PastieId]) ->
     case boss_db:find("pastie-" ++ PastieId) of
         undefined ->
             {redirect, "/", [{errors, ["blub"]}]};
@@ -54,7 +54,7 @@ view_raw('GET', [PastieId]) ->
         {error, Reason} ->
             {output, Reason}
     end.
-    
+
 download('GET', [PastieId]) ->
     case boss_db:find("pastie-" ++ PastieId) of
         undefined ->
@@ -74,3 +74,7 @@ delete('GET', [PastieId]) ->
         {error, Reason} ->
             {output, Reason}
     end.
+
+update('GET', [LastTimestamp]) ->
+    {ok, Timestamp, NewPasties} = boss_mq:pull("new-pasties", list_to_integer(LastTimestamp)),
+    {json, [{timestamp, Timestamp}, {new_pasties, NewPasties}]}.

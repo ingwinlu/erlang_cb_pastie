@@ -2,9 +2,8 @@
 {% block title %}heroicpastie - recent{% endblock %}
 
 {% block navbarlinks %}
-<li><a href='/'>Index</a></li>
-<li class="active"><a href='/recent'>Recent</a></li>
-<li><a href='/create'>Create</a></li>
+<li class="active"><a href="/pastie/recent">Recent</a></li>
+<li><a href="/pastie/create">Create</a></li>
 {% endblock %}
 
 {% block body %}
@@ -13,7 +12,7 @@
     {% if pasties %}
     <div class="list-group">
         {% for pastie in pasties %}
-            <a class="list-group-item" href='/{{pastie.get_pure_id}}'>
+            <a id="{{pastie.id}}" class="list-group-item" href="/pastie/view/{{pastie.get_pure_id}}">
                 <span class="identifier">id: {{pastie.id}}</span>,
                 <span class="name">name: {{pastie.paste_name}}</span>,
                 <span class="timestamp">posted: {{pastie.iso_8601_fmt}}</span>
@@ -21,7 +20,11 @@
         {% endfor %}
     </div>
     {% else %}
-        <p>No pasties! <a href='/create'>Create one!</a></p>
+        <p>No pasties! <a href="/pastie/create">Create one!</a></p>
     {% endif %}
 </div>
+{% endblock %}
+
+{% block additionalscripts %}
+    <script type="text/javascript" src="/static/updates.js"></script>
 {% endblock %}

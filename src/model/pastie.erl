@@ -27,6 +27,7 @@ iso_8601_fmt() ->
         [Year, Month, Day, Hour, Min, Sec]).
 
 after_create() ->
+    boss_mq:push("new-pasties", THIS),
     case boss_db:count(pastie) =< 100 of
         true -> ok;
         _    -> [Oldest] = boss_db:find(pastie, [],[{limit,1},{order_by,paste_time},{descending,false}]),
