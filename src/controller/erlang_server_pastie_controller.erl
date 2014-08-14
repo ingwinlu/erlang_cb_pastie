@@ -8,7 +8,8 @@ index('GET', []) ->
 
 recent('GET', []) ->
     Pasties = boss_db:find(pastie, [],[{limit,20},{order_by,paste_time},{descending,true}]),
-    {ok, [{pasties, Pasties}]}.
+    Timestamp = boss_mq:now("new-pasties"),
+    {ok, [{pasties, Pasties}, {timestamp,Timestamp}]}.
 
 create('GET', []) ->
     ok;
@@ -32,9 +33,9 @@ create('GET', [PastieId]) -> %% repost a existing pastie
         Pastie ->
             {ok, [{new_pastie, Pastie}]};
         undefined ->
-            {redirect, "/create"};
+            {redirect, "/pastie/create"};
         {error, Reason} ->
-            {redirect, "/create"}
+            {redirect, "/pastie/create"}
     end.
 
 view('GET', [PastieId]) ->
@@ -75,6 +76,8 @@ delete('GET', [PastieId]) ->
             {output, Reason}
     end.
 
+update('GET', []) ->
+    update('GET', ["0"]);
 update('GET', [LastTimestamp]) ->
     {ok, Timestamp, NewPasties} = boss_mq:pull("new-pasties", list_to_integer(LastTimestamp)),
     {json, [{timestamp, Timestamp}, {new_pasties, NewPasties}]}.

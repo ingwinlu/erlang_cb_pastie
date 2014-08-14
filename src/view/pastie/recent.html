@@ -9,8 +9,8 @@
 {% block body %}
 <div class="col-md-12">
     <h1>Recent Pasties</h1>
+    <div id="recent_pasties_list" class="list-group">
     {% if pasties %}
-    <div class="list-group">
         {% for pastie in pasties %}
             <a id="{{pastie.id}}" class="list-group-item" href="/pastie/view/{{pastie.get_pure_id}}">
                 <span class="identifier">id: {{pastie.id}}</span>,
@@ -18,13 +18,18 @@
                 <span class="timestamp">posted: {{pastie.iso_8601_fmt}}</span>
             </a>
         {% endfor %}
-    </div>
     {% else %}
         <p>No pasties! <a href="/pastie/create">Create one!</a></p>
     {% endif %}
+    </div>
 </div>
 {% endblock %}
 
 {% block additionalscripts %}
     <script type="text/javascript" src="/static/updates.js"></script>
+    <script>
+        $(document).ready(function() {
+            listen_for_updates({{ timestamp }});
+        });
+    </script>
 {% endblock %}
