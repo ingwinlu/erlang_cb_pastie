@@ -2,8 +2,8 @@
 deps/*
 ebin/*
 log/*
-rebar*
-start-server.bat
+*.bat
+*.cmd
 
 #github
 .eunit
