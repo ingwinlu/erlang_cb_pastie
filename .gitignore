@@ -5,6 +5,9 @@ log/*
 *.bat
 *.cmd
 
+#rebar
+.rebar/*
+
 #github
 .eunit
 *.o
