@@ -3,7 +3,8 @@ deps/*
 ebin/*
 log/*
 rel/*
-rebar*
+rebar
+rebar.cmd
 start-server.bat
 
 #github
