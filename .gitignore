@@ -3,7 +3,6 @@ deps/*
 ebin/*
 log/*
 rel/*
-rebar
 rebar.cmd
 start-server.bat
 
