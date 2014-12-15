@@ -1,10 +1,16 @@
 {% extends "shared/base.html" %}
-{% block title %}heroicpastie - view: {{foundpastie.paste_name}}{% endblock %}
+{% block title %}
+{% if foundpastie %}
+    heroicpastie - view: {{foundpastie.paste_name}}
+{% else %}
+    heroicpastie - view: {{pastieid}}
+{% endif %}
+{% endblock %}
 
 {% block body %}
 {% if foundpastie %}
     <div class="col-md-12">
-        <h1>Display Pastie with Name: {{foundpastie.paste_name}} <small>Language: {{foundpastie.language}}, ID: {{foundpastie.id}}</small></h1>
+        <h1 class="text-right"><small>Language: {{foundpastie.language}}, ID: {{foundpastie.id}}</small> {{foundpastie.paste_name}}</h1>
         <div class="row">
             <div class="col-md-2">
                 <div class="list-group">
@@ -26,9 +32,13 @@
 {% endblock %}
 
 {% block additionalscripts %}
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('code').each(function(i, e) {hljs.highlightBlock(e)});
-    });
-</script>
+{% if foundpastie %}
+    {% if foundpastie.language|lower != "text" %}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('code').each(function(i, e) {hljs.highlightBlock(e)});
+            });
+        </script>
+    {% endif %}
+{% endif %}
 {% endblock %}
