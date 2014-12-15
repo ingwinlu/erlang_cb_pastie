@@ -16,7 +16,7 @@ create('GET', []) ->
 create('POST', []) -> %% new pastie
     PastieNameParam = Req:post_param("pastie_name"),
     case PastieNameParam of
-        [] -> PastieName = "None";
+        [] -> PastieName = "No Name";
         _ -> PastieName = PastieNameParam
     end,
     PastieText = Req:post_param("pastie_text"),
